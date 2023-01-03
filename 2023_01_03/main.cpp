@@ -25,7 +25,7 @@ int read_waypoints_data(void){
 		Y[no_line] = y;
 		Yaw[no_line] = yaw;
 		no_line++;
-	} while (feof(fp) == 0);
+	} while (result > 0);
 	for (int i = 0; i < no_line; i++){
 		printf("\n %f %f %f \n", X[i], Y[i], Yaw[i]);
 	}

@@ -18,7 +18,7 @@ double linear_mapping(double x) {
             y = ((cal_data.Y[0] - cal_data.Y[1]) / (cal_data.X[0] - cal_data.X[1])) * (x - cal_data.X[1]) + cal_data.Y[1]; //처음으로 생성된 선형함수 이용
             break;
         }
-        else if (x > cal_data.X[i] && x >= cal_data.X[i+1]) //x값이 범위안에 있을때
+        else if (x > cal_data.X[i] && x <= cal_data.X[i+1]) //x값이 범위안에 있을때
         {
             y = ((cal_data.Y[i] - cal_data.Y[i + 1]) / (cal_data.X[i] - cal_data.X[i + 1])) * (x - cal_data.X[i + 1]) + cal_data.Y[i + 1]; //범위 안에 있는 선형함수를 이용
             break;

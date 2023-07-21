@@ -1,12 +1,12 @@
-// TF_Rotation.cpp : ÄÜ¼Ö ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁøÀÔÁ¡À» Á¤ÀÇÇÕ´Ï´Ù.
+// TF_Rotation.cpp : ì½˜ì†” ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì§„ì…ì ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
 #define _USE_MATH_DEFINES
 #include "math.h"
 
-#define RAD2DEG(x)   x*180/M_PI  //¶óÀÌ¾È¿¡´õ µğ±Û·Î
-#define DEG2RAD(x)   x*M_PI/180  //µğ±Û¿¡¼­ ¶óµğ¾ÈÀ¸·Î
+#define RAD2DEG(x)   x*180/M_PI  //ë¼ì´ì•ˆì—ë” ë””ê¸€ë¡œ
+#define DEG2RAD(x)   x*M_PI/180  //ë””ê¸€ì—ì„œ ë¼ë””ì•ˆìœ¼ë¡œ
 
 typedef struct 
 {
@@ -85,8 +85,8 @@ void TF_base_link_map_base_link(Point2D* base_link_point2d, Point2D base_link_ma
 }
 
 void TF_map_base_link_map(Point2D* base_link_2D, Point2D base_link_map_2D, Pose2D base_link_origin) {
-	base_link_2D ->x += base_link_origin.x;
-	base_link_2D ->y += base_link_origin.y;
+	base_link_2D ->x -= base_link_origin.x;
+	base_link_2D ->y -= base_link_origin.y;
 }
 
 void TF_base_link_map(Point2D* base_link_2D, Point2D base_link_map_2D, Pose2D base_link_origin) {

@@ -66,7 +66,7 @@ void TF_base_link_map_map(Point2D base_link_2D, Point2D* base_link_map_2D, Pose2
 		base_link_map_2D->y += base_link_origin.y;
 }
 
-void TF_map_base_link(Point2D base_link_2D, Point2D* base_link_map_2D, Pose2D base_link_origin) {
+void TF_base_link_map(Point2D base_link_2D, Point2D* base_link_map_2D, Pose2D base_link_origin) {
 	TF_base_link_base_link_map(base_link_2D, base_link_map_2D, base_link_origin);
 	TF_base_link_map_map(base_link_2D, base_link_map_2D, base_link_origin);
 }
@@ -81,9 +81,12 @@ void TF_base_link_map_base_link(Point2D* base_link_point2d, Point2D base_link_ma
 	printf("base_link_point      %6.3lf  %6.3lf\n", base_link_point2d->x, base_link_point2d->y);
 	printf("base_link_map_point  %6.3lf  %6.3lf\n", base_link_map_point2d->x, base_link_map_point2d->y);
 	printf("base_link_origin     %6.3lf  %6.3lf  %6.3lf\n", base_link_origin.x, base_link_origin.y, base_link_origin.theta);*/
+
+	double x0 = (Rotation_matrix_inverse[0][0] * base_link_point2d->x) + Rotation_matrix_inverse[0][1] * (base_link_point2d->y);
+	double y0 = (Rotation_matrix_inverse[1][0] * base_link_point2d->x) + Rotation_matrix_inverse[1][1] * (base_link_point2d->y);
 	
-	base_link_point2d->x = (Rotation_matrix_inverse[0][0] * base_link_point2d->x) + Rotation_matrix_inverse[0][1] * (base_link_point2d->y);
-	base_link_point2d->y = (Rotation_matrix_inverse[1][0] * base_link_point2d->x) + Rotation_matrix_inverse[1][1] * (base_link_point2d->y);
+	base_link_point2d->x = x0;
+	base_link_point2d->y = y0;
 }
 
 void TF_map_base_link_map(Point2D* base_link_2D, Point2D base_link_map_2D, Pose2D base_link_origin) {
@@ -91,7 +94,7 @@ void TF_map_base_link_map(Point2D* base_link_2D, Point2D base_link_map_2D, Pose2
 	base_link_2D->y = base_link_map_2D.y - base_link_origin.y;
 }
 
-void TF_base_link_map(Point2D* base_link_2D, Point2D base_link_map_2D, Pose2D base_link_origin) {
+void TF_map_base_link(Point2D* base_link_2D, Point2D base_link_map_2D, Pose2D base_link_origin) {
 	TF_map_base_link_map(base_link_2D, base_link_map_2D, base_link_origin);
 	TF_base_link_map_base_link(base_link_2D, base_link_map_2D, base_link_origin);
 }

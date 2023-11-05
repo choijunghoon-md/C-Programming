@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
+int cnt = 0;
+
 int main() {
     int ringbuffer[5] = { 0, };
     while (1) {
@@ -13,13 +15,14 @@ int main() {
 
         int temp = 0;
         
-        printf("���� �Է��Ͻÿ� : ");
+        printf("°ªÀ» ÀÔ·ÂÇÏ½Ã¿À : ");
         scanf("%d", &temp);
-
-        for (int i = 3; i >= 0; i--) {
-            ringbuffer[i + 1] = ringbuffer[i];
+        
+        ringbuffer[cnt] = temp;
+        cnt++;
+        if(cnt >= 5){
+            cnt = 0;
         }
-        ringbuffer[0] = temp;
     }
     return 0;
 }
